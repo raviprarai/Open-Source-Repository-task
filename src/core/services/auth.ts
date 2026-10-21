@@ -62,7 +62,7 @@ export const getUserSessions = async (
          const userId = req.userData?._id;
          if (!userId || !mongoose.isValidObjectId(userId)) {
     return {
-        status: 0,
+        status: 3,
         message: msg.Unauthorized ,
         data: {},
     };
