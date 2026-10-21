@@ -60,7 +60,13 @@ export const getUserSessions = async (
 
     try {
          const userId = req.userData?._id;
-
+        if (!userId || !mongoose.isValidObjectId(userId)) {
+  return {
+    status: 3,
+    message: msg.Unauthorized,
+    data: {},
+  };
+}
         const userObjectId = new mongoose.Types.ObjectId(userId);
 
         // Check whether user exists
