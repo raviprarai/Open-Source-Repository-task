@@ -6,11 +6,14 @@ export const registerUserSchema = Joi.object({
         .trim()
         .min(2)
         .max(100)
+        .pattern(/^[\p{L}\p{M}]+(?:[ '-][\p{L}\p{M}]+)*$/u)
         .required()
         .messages({
             "string.empty": "Full name is required.",
             "string.min": "Full name must be at least 2 characters.",
             "string.max": "Full name cannot exceed 100 characters.",
+            "string.pattern.base":
+                "Full name may contain letters, spaces, hyphens, and apostrophes only.",
             "any.required": "Full name is required.",
         }),
 
@@ -31,7 +34,8 @@ export const registerUserSchema = Joi.object({
         .required()
         .messages({
             "string.empty": "Phone number is required.",
-            "string.pattern.base": "Phone number must be exactly 10 digits.",
+            "string.pattern.base":
+                "Phone number must be exactly 10 digits.",
             "any.required": "Phone number is required.",
         }),
-});
+}).unknown(false);
