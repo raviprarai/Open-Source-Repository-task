@@ -63,7 +63,7 @@ export const getUserSessions = async (
          if (!userId || !mongoose.isValidObjectId(userId)) {
     return {
         status: 0,
-        message: "Invalid or missing user ID",
+        message: msg.Unauthorized,
         data: {},
     };
 }
@@ -169,7 +169,7 @@ export const getUserSessions = async (
 
         return {
             status: -1,
-            message: error.message || msg.errorMsg,
+            message:  msg.errorMsg,
             data: {},
         };
     }
