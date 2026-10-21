@@ -68,6 +68,13 @@ export const getUserSessions = async (
         StatusCodes.NOT_FOUND
       );
     }
+    if (result.status === 3) {
+  return sendErrorResponse(
+    res,
+    result.message,
+    StatusCodes.UNAUTHORIZED
+  );
+}
 
     if (result.status === -1) {
       return sendErrorResponse(
